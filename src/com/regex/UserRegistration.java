@@ -35,7 +35,7 @@ public class UserRegistration {
      * create a method name as validateUsername
      * method to check username Valid or Invalid
      */
-    public void validateUsername() {
+    public void validateUserName() {
 
         System.out.println("Enter UserName");
 
@@ -78,6 +78,51 @@ public class UserRegistration {
     }
 
     /**
+     * create a method name as validateLastname
+     * method to check LastName Valid or Invalid
+     */
+    public void validateLastName() {
+
+        System.out.println("Enter LastName");
+
+        String lastName=sc.next();
+
+        /**
+         *  regex pattern for Lastname
+         */
+        String regex = "^[A-Z]{1}[a-zA-z0-9]{2,}$";
+
+        /**
+         * First, the pattern is created using the Pattern.compile() method
+         * The first parameter indicates which pattern is being searched for
+         */
+        Pattern p = Pattern.compile(regex);
+
+        /**
+         * The matcher() method is used to search for the pattern in a string.
+         * It returns a Matcher object which contains information about the search that was performed.
+         */
+
+        Matcher matcher = p.matcher(lastName);
+
+        /**
+         * boolean data type is used for return op is true or false
+         */
+        boolean result = matcher.matches();
+
+        /**
+         * if mather matches then print valid username other print invalid username
+         */
+        if(result){
+            System.out.println("Valid username");
+        }
+        else {
+            System.out.println("Invalid username");
+        }
+    }
+
+
+    /**
      * create a main method
      * all programs execute in main method
      * @param args no arguments
@@ -99,19 +144,33 @@ public class UserRegistration {
             /**
              * userinput choice for checking Multiple validation
              */
-            System.out.println("Enter choice.............\n " +"1)UserName\n");//uc1
+            System.out.println("Enter choice.............\n "
+                    +"1)UserName\n"   //uc1
+                    +"2)LastName\n");
 
             int choice=sc.nextInt();
-                
+
 
             /**
              * using switch case for choosing option and print output calling wise.
              *
              */
             switch(choice) {
+
+                /**
+                 * for uc1 calling validateUsername method in this case
+                 */
                 case 1:
-                    registration.validateUsername();
+                    registration.validateUserName();
                     break;
+
+                /**
+                 * for uc2 calling validateLastname method in this case
+                 */
+                case 2:
+                    registration.validateLastName();
+                    break;
+
                 default:
                     System.out.println("Invalid choice");
                     System.exit(0);
