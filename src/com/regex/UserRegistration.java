@@ -12,6 +12,8 @@ package com.regex;
  *        - Country code follow by space and 10 digit number
  * UC5 :- As a User need to follow pre-defined Password rules.Rule1– minimum 8 Characters
  *         - NOTE – All rules must be passed
+ * UC6 :- Rule2 – Should have at least 1 Upper Case
+ *        - NOTE – All rules must be passed
  */
 
 /**
@@ -190,6 +192,33 @@ public class UserRegistration {
         }
     }
     /**
+     * create a method name as validPassword2
+     * check password valid or not
+     */
+    public void validPassword2() {
+        System.out.println("Enter Password");
+        String password=sc.next();
+        /**
+         * regex pattern for password:
+         * 1)must contain atleast 8 characters
+         * 2)must contain one UpperCase
+         */
+        String regex = "^[A-Z]{1,}[a-zA-z1-9]{7,}$";
+        Pattern p = Pattern.compile(regex);
+        Matcher matcher = p.matcher(password);
+        boolean result = matcher.matches();
+        /**
+         * if condition is true then print valid password otherwise invalid
+         */
+        if(result){
+            System.out.println("Valid Password");
+        }
+        else {
+            System.out.println("Invalid Password");
+        }
+    }
+
+    /**
      * create a main method
      * all programs execute in main method
      * @param args no arguments
@@ -215,7 +244,8 @@ public class UserRegistration {
                     +"2)LastName\n"  //uc2
                     +"3)Email\n"      //uc3
                     +"4)PhoneNo\n"    //uc4
-                    +"5)password 1\n");//uc5
+                    +"5)password 1\n" //Uc5
+                    +"6)password 2"); //uc6
 
             int choice=sc.nextInt();
             /**
@@ -252,6 +282,12 @@ public class UserRegistration {
                  */
                 case 5:
                     registration.validPassword1();
+                    break;
+                /**
+                 * for uc6 calling validPassword2 method in this case
+                 */
+                case 6:
+                    registration.validPassword2();
                     break;
 
                 default:
