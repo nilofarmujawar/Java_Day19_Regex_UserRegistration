@@ -16,6 +16,8 @@ package com.regex;
  *        - NOTE – All rules must be passed
  * UC7 :- Rule3 – Should  have at least 1 numeric number in the password
  *       - NOTE – All rules must be passed
+ * UC8 :- Rule4 – Has exactly 1 Special Character
+ *        - NOTE – All rules must be passed
  */
 
 /**
@@ -245,6 +247,36 @@ public class UserRegistration {
             System.out.println("Invalid Password");
         }
     }
+
+    /**
+     * create a method name as validPassword4
+     * method to check password Valid or Invalid
+     */
+    public void validPassword4() {
+        System.out.println("Enter Password");
+        String password=sc.next();
+        /**
+         * regex pattern for password:
+         * 1)must contain atleast 8 characters
+         * 2)must contain one UpperCase
+         * 3)should have 1 numericno
+         * 4)has contain Exactily one specialSymbol.
+         */
+        String regex = "^[A-Z]{1}+[a-zA-z1-9]{6,}[@$^]{1}[1-9]{1}$";
+        Pattern p = Pattern.compile(regex);
+        Matcher matcher = p.matcher(password);
+        boolean result = matcher.matches();
+
+        /**
+         * if condition is true then print valid password otherwise print invalid password
+         */
+        if(result){
+            System.out.println("Valid Password");
+        }
+        else {
+            System.out.println("Invalid Password");
+        }
+    }
     /**
      * create a main method
      * all programs execute in main method
@@ -273,7 +305,8 @@ public class UserRegistration {
                     +"4)PhoneNo\n"    //uc4
                     +"5)password 1\n" //Uc5
                     +"6)password 2\n" //uc6
-                    +"7)password 3"); //uc7
+                    +"7)password 3\n" //uc7
+                    +"8)password 4"); //uc8
 
             int choice=sc.nextInt();
             /**
@@ -306,7 +339,7 @@ public class UserRegistration {
                     registration.validMobileNo();
                     break;
                 /**
-                 * for uc5 calling validPassword1 method in this case
+                 * for uc5 calling validPassword1 method in 7this case
                  */
                 case 5:
                     registration.validPassword1();
@@ -322,6 +355,12 @@ public class UserRegistration {
                  */
                 case 7:
                     registration.validPassword3();
+                    break;
+                /**
+                 * for uc8 calling validPassword4 method in this case
+                 */
+                case 8:
+                    registration.validPassword4();
                     break;
 
                 default:
