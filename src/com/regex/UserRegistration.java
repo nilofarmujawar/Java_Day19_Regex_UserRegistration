@@ -18,6 +18,7 @@ package com.regex;
  *       - NOTE – All rules must be passed
  * UC8 :- Rule4 – Has exactly 1 Special Character
  *        - NOTE – All rules must be passed
+ * UC9 :- Should clear all email samples provided separately
  */
 
 /**
@@ -277,6 +278,35 @@ public class UserRegistration {
             System.out.println("Invalid Password");
         }
     }
+
+    /**
+     * create a method name as emailValidation
+     * method to check Email Valid or Invalid
+     */
+    public void emailValidation() {
+        System.out.println("Enter Email");
+        String email=sc.next();
+        /**
+         * regex pattern for email
+         * 1)must contain character before @
+         * 2)must contain @ symbol after char
+         * 3)must contain char after @
+         * 4)must contain "."  symbol before com or in
+         */
+        String regex = "^[a-zA-Z0-9]+([+_.-][a-zA-Z0-9]+)*[@][a-zA-Z0-9]+[.][a-zA-Z]{2,4}([.][a-zA-Z]{2,4})?";
+        Pattern p = Pattern.compile(regex);
+        Matcher matcher = p.matcher(email);
+        boolean result = matcher.matches();
+        /**
+         * if condition is true then print Valid email address otherwise print invalid email address
+         */
+        if(result){
+            System.out.println("Valid Email Address");
+        }
+        else {
+            System.out.println("Invalid Email Address");
+        }
+    }
     /**
      * create a main method
      * all programs execute in main method
@@ -306,7 +336,8 @@ public class UserRegistration {
                     +"5)password 1\n" //Uc5
                     +"6)password 2\n" //uc6
                     +"7)password 3\n" //uc7
-                    +"8)password 4"); //uc8
+                    +"8)password 4\n" //uc8
+                    +"9)EmailValidation"); //uc9
 
             int choice=sc.nextInt();
             /**
@@ -361,6 +392,12 @@ public class UserRegistration {
                  */
                 case 8:
                     registration.validPassword4();
+                    break;
+                /**
+                 * for uc9 calling emailValidation method in this case
+                 */
+                case 9:
+                    registration.emailValidation();
                     break;
 
                 default:
