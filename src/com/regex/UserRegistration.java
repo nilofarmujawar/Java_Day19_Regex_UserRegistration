@@ -10,6 +10,8 @@ package com.regex;
  * UC4 :- As a User need to follow pre-defined Mobile Format
  *        - E.g. 91 9919819801
  *        - Country code follow by space and 10 digit number
+ * UC5 :- As a User need to follow pre-defined Password rules.Rule1– minimum 8 Characters
+ *         - NOTE – All rules must be passed
  */
 
 /**
@@ -164,6 +166,30 @@ public class UserRegistration {
     }
 
     /**
+     * create a method name as validPassword
+     * method to check password Valid or Invalid
+     */
+    public void validPassword1() {
+        System.out.println("Enter Password");
+        String password=sc.next();
+        /**
+         * regex pattern for password:must contain atleast 8 characters
+         */
+        String regex = "^[a-zA-z1-9]{8,}$";
+        Pattern p = Pattern.compile(regex);
+        Matcher matcher = p.matcher(password);
+        boolean result = matcher.matches();
+        /**
+         * if condition is true then print valid password otherswise print invalid password
+         */
+        if(result){
+            System.out.println("Valid Password");
+        }
+        else {
+            System.out.println("Invalid Password");
+        }
+    }
+    /**
      * create a main method
      * all programs execute in main method
      * @param args no arguments
@@ -188,7 +214,8 @@ public class UserRegistration {
                     +"1)UserName\n"   //uc1
                     +"2)LastName\n"  //uc2
                     +"3)Email\n"      //uc3
-                    +"4)PhoneNo\n");  //uc4
+                    +"4)PhoneNo\n"    //uc4
+                    +"5)password 1\n");//uc5
 
             int choice=sc.nextInt();
             /**
@@ -219,6 +246,12 @@ public class UserRegistration {
                  */
                 case 4:
                     registration.validMobileNo();
+                    break;
+                /**
+                 * for uc5 calling validPassword1 method in this case
+                 */
+                case 5:
+                    registration.validPassword1();
                     break;
 
                 default:
