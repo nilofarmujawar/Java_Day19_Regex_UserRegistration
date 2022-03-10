@@ -7,6 +7,9 @@ package com.regex;
  * UC3 :- As a User need to enter  a valid email
  *        - E.g. abc.xyz@bl.co.in
  *        - Email has 3 mandatory parts (abc, bl& co) and 2 optional (xyz & in) with precise @ and . positions
+ * UC4 :- As a User need to follow pre-defined Mobile Format
+ *        - E.g. 91 9919819801
+ *        - Country code follow by space and 10 digit number
  */
 
 /**
@@ -133,6 +136,32 @@ public class UserRegistration {
         }
     }
 
+    /**
+     * create a method name as validMobileNo
+     * method to check Phoneno Valid or Invalid
+     */
+    public void validMobileNo() {
+        System.out.println("Enter MobileNo with country code");
+        String mobileno=sc.next();
+        /**
+         *  regex pattern for email
+         */
+        String regex =  "^[1-9]{2}\\s[0-9]{10}$";
+
+        Pattern p = Pattern.compile(regex);
+        Matcher matcher = p.matcher(mobileno);
+
+        boolean result = matcher.matches();
+        /**
+         * if match print valid MobileNo other print invalid mobileno
+         */
+        if(result){
+            System.out.println("Valid MobileNo");
+        }
+        else {
+            System.out.println("Invalid MobileNo");
+        }
+    }
 
     /**
      * create a main method
@@ -157,8 +186,9 @@ public class UserRegistration {
              */
             System.out.println("Enter choice.............\n "
                     +"1)UserName\n"   //uc1
-                    +"2)LastName\n"
-                    +"3)Email\n");
+                    +"2)LastName\n"  //uc2
+                    +"3)Email\n"      //uc3
+                    +"4)PhoneNo\n");  //uc4
 
             int choice=sc.nextInt();
             /**
@@ -183,6 +213,12 @@ public class UserRegistration {
                  */
                 case 3:
                     registration.validateEmail();
+                    break;
+                /**
+                 * for uc4 calling validMobileNo method in this case
+                 */
+                case 4:
+                    registration.validMobileNo();
                     break;
 
                 default:
