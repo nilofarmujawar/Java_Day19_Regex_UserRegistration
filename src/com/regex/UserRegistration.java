@@ -68,7 +68,11 @@ public class UserRegistration {
         /**
          * boolean data type is used for return op is true or false
          */
+
         boolean result = matcher.matches();
+
+        boolean result = matcher.matches(); 
+
         /**
          *  if else conditional statment is used
          *  if pattern match then print  valid username if not matched print invalid username
